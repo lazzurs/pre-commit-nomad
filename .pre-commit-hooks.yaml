@@ -1,4 +1,4 @@
--  id: noamd-fmt
+-  id: nomad-fmt
    name: Nomad fmt
    description: Rewrites all nomad configuration files standard format
    entry: hooks/nomad-fmt.sh
