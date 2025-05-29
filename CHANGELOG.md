@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.1.4 - 2025-05-29
+#### Bug Fixes
+- Nomad script needs to be set exec - (e96b5b2) - Rob Lazzurs
+
+- - -
+
 ## v0.1.3 - 2025-05-29
 #### Bug Fixes
 - Idiot error in id name. - (f932413) - Rob Lazzurs
