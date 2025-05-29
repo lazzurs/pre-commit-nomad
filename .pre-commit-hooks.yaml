@@ -1,8 +1,7 @@
-
-- id: noamd-fmt
-  name: Nomad fmt
-  description: Rewrites all nomad configuration files standard format
-  entry: hooks/nomad-fmt.sh
-  language: script
-  files: \.(hcl)$
-  require_serial: true
+-  id: noamd-fmt
+   name: Nomad fmt
+   description: Rewrites all nomad configuration files standard format
+   entry: hooks/nomad-fmt.sh
+   language: script
+   files: \.(hcl)$
+   require_serial: true
