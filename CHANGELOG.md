@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.1.1 - 2025-05-29
+#### Bug Fixes
+- Fixing pre-commit hook configuration filename - (198f75b) - Rob Lazzurs
+
+- - -
+
 ## v0.1.0 - 2025-05-29
 #### Features
 - Initial commit - (46cbf0d) - Rob Lazzurs
