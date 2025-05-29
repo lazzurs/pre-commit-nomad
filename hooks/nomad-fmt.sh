@@ -9,6 +9,7 @@ export PATH=$PATH:/usr/local/bin
 FMT_ERROR=0
 
 for file in "$@"; do
+  nomad fmt "$file" 
   nomad fmt -check "$file" || FMT_ERROR=$?
 done
 
