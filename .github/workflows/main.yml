@@ -48,3 +48,22 @@ jobs:
           args: --auto
           git-user: 'GitHubActions'
           git-user-email: 'github@lazzurs.org'
+      - name: Generate release notes
+        if: steps.next_version.outputs.skip != 'true'
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+        # `cog changelog --at` errors on non-conventional commits inside
+        # the release range, so take the section cocogitto just wrote to
+        # CHANGELOG.md during the bump instead.
+        run: |
+          awk -v ver="$VERSION" '
+            $0 ~ "^## " ver " " { in_section=1; next }
+            in_section && /^- - -$/ { exit }
+            in_section { print }
+          ' CHANGELOG.md > RELEASE_NOTES.md
+      - name: Upload github release
+        if: steps.next_version.outputs.skip != 'true'
+        uses: softprops/action-gh-release@v3
+        with:
+          body_path: RELEASE_NOTES.md
+          tag_name: ${{ steps.release.outputs.version }}
