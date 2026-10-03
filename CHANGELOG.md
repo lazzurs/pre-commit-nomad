@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## v0.1.6 - 2026-10-03
+#### Bug Fixes
+- continue formatting remaining files after one fails - (8858dcc) - Rob Lazzurs
+#### Continuous Integration
+- fix tag release for cocogitto-action v4 and skip no-op bumps - (0f61f78) - Rob Lazzurs
+#### Chores
+- (**deps**) bump actions/checkout from 4 to 7 - (db8e2d1) - dependabot[bot]
+- add dependabot config for GitHub Actions - (d423455) - copilot-swe-agent[bot]
+
+- - -
+
 ## v0.1.5 - 2025-05-29
 #### Bug Fixes
 - Must format the file before checking. - (f9852d8) - Rob Lazzurs
