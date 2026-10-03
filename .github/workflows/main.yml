@@ -19,16 +19,32 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check for conventional commits
-        uses: cocogitto/cocogitto-action@v3.8
+        uses: cocogitto/cocogitto-action@v4
+        with:
+          command: check
+          args: --from-latest-tag
+        continue-on-error: true
       - name: Get next version
         id: next_version
+        # cocogitto 6.4 exits 0 and prints informational lines on stdout
+        # ("No conventional commits...", "Pre-Hooks and Post-Hooks have
+        # been skipped.") even when no bump is needed, so only a bare
+        # version line means a bump is required. Without this check the
+        # bump step fails on pushes that need no release.
         run: |
-          echo NEXT_VERSION=`cog bump --auto --dry-run` >> "$GITHUB_ENV"
+          NEXT_VERSION=$(cog bump --auto --dry-run 2>/dev/null | grep -E "^v?[0-9]+\.[0-9]+\.[0-9]+$" | tail -n1) || true
+          if [ -z "$NEXT_VERSION" ]; then
+            echo "No version bump needed, skipping release"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Version bump needed: $NEXT_VERSION"
+          fi
       - name: Cocogitto tag
-        id: tag
-        uses: cocogitto/cocogitto-action@v3
+        id: release
+        if: steps.next_version.outputs.skip != 'true'
+        uses: cocogitto/cocogitto-action@v4
         with:
-          check-latest-tag-only: false
-          release: true
+          command: bump
+          args: --auto
           git-user: 'GitHubActions'
           git-user-email: 'github@lazzurs.org'
