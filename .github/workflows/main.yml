@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check for conventional commits
-        uses: cocogitto/cocogitto-action@9a9fe03b31c47444290c0d7f9b1ee1b44ee13f20 # v4.1.0
+        uses: cocogitto/cocogitto-action@52d0023b4396897f1815648e553db2ab8d782f3a # v4.2.0
         with:
           command: check
           args: --from-latest-tag
@@ -42,7 +42,7 @@ jobs:
       - name: Cocogitto tag
         id: release
         if: steps.next_version.outputs.skip != 'true'
-        uses: cocogitto/cocogitto-action@9a9fe03b31c47444290c0d7f9b1ee1b44ee13f20 # v4.1.0
+        uses: cocogitto/cocogitto-action@52d0023b4396897f1815648e553db2ab8d782f3a # v4.2.0
         with:
           command: bump
           args: --auto
